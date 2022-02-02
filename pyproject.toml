@@ -11,9 +11,11 @@ matplotlib = "3.5.1"
 scipy = "1.7.3"
 ipykernel = "6.7.0"
 seaborn = "^0.11.2"
+lifelines = "^0.26.4"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
+pytest = "^6.2.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

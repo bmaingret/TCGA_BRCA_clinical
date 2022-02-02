@@ -23,4 +23,4 @@ If using `pip`
     pip install -r requirements.txt
 ```
 
-N.B. `requirements.txt` was create using `poetry export -f requirements.txt -o requirements.txt`.
+N.B. `requirements.txt` was create using `poetry export -f requirements.txt -o requirements.txt --without-hashes --dev`.
