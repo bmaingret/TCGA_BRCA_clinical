@@ -33,7 +33,6 @@ def categorize_features(data: pd.DataFrame) -> pd.DataFrame:
     """Change object type to category type and fill na values."""
     cat_columns = data.select_dtypes(exclude="number").columns
     data_categorized = data.copy()
-    # data_categorized[cat_columns] = np.asarray(data_categorized[cat_columns])
     data_categorized[cat_columns] = data_categorized[cat_columns].fillna(
         value="Not Reported"
     )
@@ -41,6 +40,15 @@ def categorize_features(data: pd.DataFrame) -> pd.DataFrame:
         dtype="category"
     )
     return data_categorized
+
+
+def booleanize_treatment(data: pd.DataFrame) -> pd.DataFrame:
+    """Warning: Assuming  `not reported`==`no`"""
+    val_dict = {"yes": True, "no": False, "not reported": False}
+    data["treatment_or_therapy"] = (
+        data["treatment_or_therapy"].replace(val_dict).astype(bool)
+    )
+    return data
 
 
 def widen_treatment_type(data: pd.DataFrame) -> pd.DataFrame:
@@ -58,7 +66,27 @@ def widen_treatment_type(data: pd.DataFrame) -> pd.DataFrame:
         .reset_index()
         .rename_axis(columns=None)
     )
+    wide_data = wide_data.rename(
+        columns={
+            "Pharmaceutical Therapy, NOS": "pharmaceutical_therapy_nos",
+            "Radiation Therapy, NOS": "radiation_therapy_nos",
+        }
+    )
     return wide_data
+
+
+def add_treatment_feature(data: pd.DataFrame) -> pd.DataFrame:
+    def treatment(row: pd.DataFrame) -> str:
+        if row["pharmaceutical_therapy_nos"] and row["radiation_therapy_nos"]:
+            return "both"
+        if row["pharmaceutical_therapy_nos"]:
+            return "pharmaceutical_therapy_nos"
+        if row["radiation_therapy_nos"]:
+            return "radiation_therapy_nos"
+        return "no"
+
+    data["treatment"] = data.apply(func=treatment, axis="columns")
+    return data
 
 
 def remove_low_entropy_features(data: pd.DataFrame, cutoff: int = 0.1) -> pd.DataFrame:
@@ -78,29 +106,34 @@ def convert_to_int(data: pd.DataFrame) -> pd.DataFrame:
     return data_converted
 
 
+def convert_age_at_diagnosis(data: pd.DataFrame) -> pd.DataFrame:
+    """Convert days to year, keeping it simple by dividing by 365.25.
+    Filling-in NA values with `year_of_diagnosis` and `year_of_birth`"""
+    data["age_at_diagnosis"] = (data["age_at_diagnosis"] / 365.25).astype(float)
+    mask_na = data["age_at_diagnosis"].isna()
+    data.loc[mask_na, "age_at_diagnosis"] = (
+        data.loc[mask_na, "year_of_diagnosis"] - data.loc[mask_na, "year_of_birth"]
+    )
+    return data
+
+
+def bin_age_at_diagnosis(data: pd.DataFrame, bins=5) -> pd.DataFrame:
+    """Binning for further analysis"""
+    data["age_at_diagnosis_binned"] = pd.cut(data["age_at_diagnosis"], bins=bins)
+    return data
+
+
 def drop_missing_death_date(data: pd.DataFrame) -> pd.DataFrame:
     rows_to_drop_query = (
         "days_to_death.isna() & year_of_death.isna() & vital_status=='Dead'"
     )
-
     return data.drop(index=data.query(rows_to_drop_query, engine="python").index)
 
 
-def identical_fields(group):
-    """ "Check every column for every pair of `case_id`
-    Warning: Can take up to a minute to run."""
-    identical = []
-
-    def diff(group, col):
-        return group.iloc[0].loc[col] != group.iloc[1].loc[col]
-
-    def not_nan(group, col):
-        return pd.notna(group.iloc[0].loc[col]) or pd.notna(group.iloc[1].loc[col])
-
-    for col in group.columns:
-        if diff(group, col) and not_nan(group, col):
-            identical.append(col)
-    return identical
+def add_observed_death_feature(data: pd.DataFrame) -> pd.DataFrame:
+    val_dict = {"Alive": False, "Dead": True}
+    data["observed_death"] = data["vital_status"].replace(val_dict).astype(bool)
+    return data
 
 
 def add_survival_feature(data: pd.DataFrame) -> pd.DataFrame:
@@ -115,12 +148,6 @@ def add_survival_feature(data: pd.DataFrame) -> pd.DataFrame:
     return data
 
 
-def add_observed_death_feature(data: pd.DataFrame) -> pd.DataFrame:
-    val_dict = {"Alive": False, "Dead": True}
-    data["observed_death"] = data["vital_status"].replace(val_dict).astype(bool)
-    return data
-
-
 def preprocess_pipeline(data: pd.DataFrame) -> pd.DataFrame:
     data_prep = (
         data.pipe(drop_na)
@@ -131,6 +158,8 @@ def preprocess_pipeline(data: pd.DataFrame) -> pd.DataFrame:
         .pipe(categorize_features)
         .pipe(remove_low_entropy_features)
         .pipe(convert_to_int)
+        .pipe(convert_age_at_diagnosis)
+        .pipe(bin_age_at_diagnosis)
         .pipe(drop_missing_death_date)
         .pipe(add_survival_feature)
         .pipe(add_observed_death_feature)
