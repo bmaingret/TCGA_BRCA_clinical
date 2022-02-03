@@ -14,6 +14,7 @@ seaborn = "^0.11.2"
 lifelines = "^0.26.4"
 cmake = "^3.22.2"
 scikit-survival = "^0.17.0"
+scikit-learn = "^1.0.2"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
