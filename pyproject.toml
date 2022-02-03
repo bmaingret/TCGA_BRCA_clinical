@@ -12,6 +12,8 @@ scipy = "1.7.3"
 ipykernel = "6.7.0"
 seaborn = "^0.11.2"
 lifelines = "^0.26.4"
+cmake = "^3.22.2"
+scikit-survival = "^0.17.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"

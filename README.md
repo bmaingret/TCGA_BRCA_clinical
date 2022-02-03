@@ -22,8 +22,9 @@ If using `pip`
 ```console
     pip install -r requirements.txt
 ```
+> `requirements.txt` was create using `poetry export -f requirements.txt -o requirements.txt --without-hashes --dev`.
 
-N.B. `requirements.txt` was create using `poetry export -f requirements.txt -o requirements.txt --without-hashes --dev`.
+The package `scikit-survival`has some specifics. Please check the [install guide](https://scikit-survival.readthedocs.io/en/stable/install.html)
 
 ## Usage
 
