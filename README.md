@@ -24,3 +24,11 @@ If using `pip`
 ```
 
 N.B. `requirements.txt` was create using `poetry export -f requirements.txt -o requirements.txt --without-hashes --dev`.
+
+## Usage
+
+To create the preprocessed data:
+
+``console
+    python -m tcga_brca_clinical.make_dataset
+```
