@@ -5,10 +5,10 @@ Analysis of clinical data from the Breast Invasive Carcinoma (TCGA-BRCA) dataset
 ## Content
 
     .
-    ├── data                   # Compiled files (alternatively `dist`)
-    ├── notebooks                    # Documentation files (alternatively `doc`)
-    ├── tcga_brca_clinical                     # Source files (alternatively `lib` or `app`)
-    └── tests                    # Automated tests (alternatively `spec` or `tests`)
+    ├── data                   # raw and processed data
+    ├── notebooks                    # Jupyter notebooks
+    ├── tcga_brca_clinical                     # Source files 
+    └── tests                    # Automated tests 
 
 
 ## Installation
