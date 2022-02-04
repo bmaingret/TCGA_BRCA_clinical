@@ -6,14 +6,13 @@ authors = ["Baptiste Maingret <baptiste.maingret@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "3.10.0"
+scikit-survival = "^0.17.0"
 pandas = "1.4.0"
 matplotlib = "3.5.1"
 scipy = "1.7.3"
 ipykernel = "6.7.0"
 seaborn = "^0.11.2"
 lifelines = "^0.26.4"
-cmake = "^3.22.2"
-scikit-survival = "^0.17.0"
 scikit-learn = "^1.0.2"
 
 [tool.poetry.dev-dependencies]
@@ -21,5 +20,5 @@ black = "^22.1.0"
 pytest = "^6.2.5"
 
 [build-system]
-requires = ["poetry-core>=1.0.0", "wheel", "cmake"]
+requires = ["poetry-core>=1.0.0",]
 build-backend = "poetry.core.masonry.api"

@@ -126,17 +126,6 @@ python-versions = ">=3.6"
 colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
-name = "cmake"
-version = "3.22.2"
-description = "CMake is an open-source, cross-platform family of tools designed to build, test and package software"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.extras]
-test = ["codecov (>=2.0.5)", "coverage (>=4.2)", "flake8 (>=3.0.4)", "path.py (>=11.5.0)", "pytest (>=3.0.3)", "pytest-cov (>=2.4.0)", "pytest-runner (>=2.9)", "pytest-virtualenv (>=1.7.0)", "scikit-build (>=0.10.0)", "setuptools (>=28.0.0)", "virtualenv (>=15.0.3)", "wheel"]
-
-[[package]]
 name = "colorama"
 version = "0.4.4"
 description = "Cross-platform colored terminal text."
@@ -880,7 +869,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.10.0"
-content-hash = "984e2c9745bb93a83285e8a2037843d40769cf75254dcf637c262fae8243108b"
+content-hash = "530055e8101b5ff2fd70e8eba3e31aa7a364c337c9e36fd9eedc7b290b06389d"
 
 [metadata.files]
 appnope = [
@@ -993,24 +982,6 @@ cffi = [
 click = [
     {file = "click-8.0.3-py3-none-any.whl", hash = "sha256:353f466495adaeb40b6b5f592f9f91cb22372351c84caeb068132442a4518ef3"},
     {file = "click-8.0.3.tar.gz", hash = "sha256:410e932b050f5eed773c4cda94de75971c89cdb3155a72a0831139a79e5ecb5b"},
-]
-cmake = [
-    {file = "cmake-3.22.2-py2.py3-none-macosx_10_9_universal2.macosx_10_9_x86_64.macosx_11_0_arm64.macosx_11_0_universal2.whl", hash = "sha256:7bc1c50c9131105b4892528183475d3fc564f3d611f0fe2f1b1bd184f7de1fd4"},
-    {file = "cmake-3.22.2-py2.py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ccb57bf773fdc0d3d299da387f7d46f38b452608fdc3100aa294dbb25d216515"},
-    {file = "cmake-3.22.2-py2.py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:0801156be44344de6b1427ee8e845850d113868001c4c5bd415caf8d44328b8f"},
-    {file = "cmake-3.22.2-py2.py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:43b820c4b880e28c10ff78ea0189deed77d77ddc166bb3fd807fa848a2822a25"},
-    {file = "cmake-3.22.2-py2.py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:026edb77648e9d84e2f446534a964513cf5ea82f226996bbe6dc480fb8048cf9"},
-    {file = "cmake-3.22.2-py2.py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6aff4053fb344dc3d89a3ebd4ef66dd6ba0c8bf0130a2fd3fb8c65baf7316518"},
-    {file = "cmake-3.22.2-py2.py3-none-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:9bc25b9c8be9507f4fc2004931f0d2f680eeae7c00f6d21aa168839a8aee7432"},
-    {file = "cmake-3.22.2-py2.py3-none-manylinux_2_5_x86_64.manylinux1_x86_64.whl", hash = "sha256:e01697d8beefd3cb2224aa70139858b6f515fc74348447fe97ddef8b56bf1cb9"},
-    {file = "cmake-3.22.2-py2.py3-none-musllinux_1_1_aarch64.whl", hash = "sha256:457e4990e8459cacbe37df6fb1aaf9648d6d08788d8b5f526c46a19d3cd7b700"},
-    {file = "cmake-3.22.2-py2.py3-none-musllinux_1_1_i686.whl", hash = "sha256:29eecf8285be72db820a60fa4adfc7b1f4c2acc0f3181881d191587ac5272e8c"},
-    {file = "cmake-3.22.2-py2.py3-none-musllinux_1_1_ppc64le.whl", hash = "sha256:87cce96f5bd40987741718462fa29138d17bb8dbd24cd2a3f0824d2210cac429"},
-    {file = "cmake-3.22.2-py2.py3-none-musllinux_1_1_s390x.whl", hash = "sha256:a642208015f3ffbc95dce55c23058ee7c562d3dece0da398f8d3276f45f5ee34"},
-    {file = "cmake-3.22.2-py2.py3-none-musllinux_1_1_x86_64.whl", hash = "sha256:7f10f00b863f2c60b585ebb45ae048174d450982c2595f336fcbbd6695a50e19"},
-    {file = "cmake-3.22.2-py2.py3-none-win32.whl", hash = "sha256:fd3168e2535ddd0bd9bfff0e4aeb921a61a8351c272654ba71b518da502b9ec2"},
-    {file = "cmake-3.22.2-py2.py3-none-win_amd64.whl", hash = "sha256:9f5f563e89a3ee8873a4c48c69d8a32331749da3c3b657d0f0ac74b659e87954"},
-    {file = "cmake-3.22.2.tar.gz", hash = "sha256:b5bd5eeb488b13cf64ec963800f3d979eaeb90b4382861b86909df503379e219"},
 ]
 colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
