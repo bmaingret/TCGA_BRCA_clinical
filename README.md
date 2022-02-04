@@ -2,6 +2,15 @@
 
 Analysis of clinical data from the Breast Invasive Carcinoma (TCGA-BRCA) dataset 
 
+## Content
+
+    .
+    ├── data                   # Compiled files (alternatively `dist`)
+    ├── notebooks                    # Documentation files (alternatively `doc`)
+    ├── tcga_brca_clinical                     # Source files (alternatively `lib` or `app`)
+    └── tests                    # Automated tests (alternatively `spec` or `tests`)
+
+
 ## Installation
 
 Using `pyenv` to install Python version.
@@ -20,11 +29,13 @@ If using `poetry`
 If using `pip`
 
 ```console
-    pip install -r requirements.txt
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install cmake
+    pip install .
 ```
-> `requirements.txt` was create using `poetry export -f requirements.txt -o requirements.txt --without-hashes --dev`.
-
-The package `scikit-survival`has some specifics. Please check the [install guide](https://scikit-survival.readthedocs.io/en/stable/install.html)
+The package `scikit-survival`has some specifics and thus requires `cmake` to be installed.
+Please check the [install guide](https://scikit-survival.readthedocs.io/en/stable/install.html).
 
 ## Usage
 
