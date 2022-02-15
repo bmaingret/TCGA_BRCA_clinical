@@ -41,6 +41,6 @@ Please check the [install guide](https://scikit-survival.readthedocs.io/en/stabl
 
 To create the preprocessed data:
 
-``console
+```console
     python -m tcga_brca_clinical.make_dataset
 ```
